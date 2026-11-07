@@ -20,9 +20,10 @@ object PluginContract {
     const val KEY_COMMAND = "command"
     const val KEY_CONDITION = "condition"
     const val KEY_CONNECTOR_ENABLED = "shizuku_connector_enabled"
+    const val DEFAULT_CONNECTOR_ENABLED = true
     // Legacy random-token preference is intentionally ignored; retained for migration diagnostics.
     const val KEY_AUTH_TOKEN = "auth_token"
-    /** Generated once per source checkout and shared by all builds from it. */
+    /** Stable token supplied by the local checkout or CI release configuration. */
     val BUILTIN_AUTH_TOKEN: String get() = GeneratedAutomationToken.VALUE
     const val EXTRA_AUTH = "auth"
     const val EXTRA_REJECTION_REASON = "cn.ying.sherverying.extra.REJECTION_REASON"

@@ -1,8 +1,10 @@
 def ksFile = rootProject.file('signing.properties')
 def props = new Properties()
 def requireReleaseSigning = providers.gradleProperty('requireReleaseSigning').orNull == 'true'
+def usingDebugFallback = false
 
 def useDebugSigning = {
+    usingDebugFallback = true
     if (requireReleaseSigning) {
         throw new GradleException('Release signing is required, but a valid signing.properties keystore was not found')
     }
@@ -51,3 +53,13 @@ if (ksFile.canRead()) {
 android.signingConfigs.sign.enableV1Signing = true
 android.signingConfigs.sign.enableV2Signing = true
 android.signingConfigs.sign.enableV3Signing = true
+
+// Debug may build without local signing material; release must never silently
+// acquire a different certificate, regardless of the Gradle invocation used.
+tasks.matching { it.name == 'preReleaseBuild' }.configureEach {
+    doFirst {
+        if (usingDebugFallback) {
+            throw new GradleException('Release requires signing.properties and the release keystore; debug signing fallback is forbidden')
+        }
+    }
+}

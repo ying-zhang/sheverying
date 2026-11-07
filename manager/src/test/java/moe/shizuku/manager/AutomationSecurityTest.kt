@@ -66,7 +66,14 @@ class AutomationSecurityTest {
         assertFalse(PluginSecurity.accepts(token, "different-token"))
     }
 
-    @Test fun connectorDefaultsOffEvenWithValidToken() {
+    @Test fun connectorDefaultsOnWithValidToken() {
+        receive(direct(PluginSecurity.getOrCreateToken(app)))
+        assertNull(rejectionReason)
+        assertEquals(1, controlCount())
+    }
+
+    @Test fun connectorCanBeExplicitlyDisabledEvenWithValidToken() {
+        prefs().edit().putBoolean(PluginContract.KEY_CONNECTOR_ENABLED, false).commit()
         receive(direct(PluginSecurity.getOrCreateToken(app)))
         assertEquals(PluginContract.REJECTION_CONNECTOR_DISABLED, rejectionReason)
         assertEquals(0, controlCount())

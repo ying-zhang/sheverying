@@ -107,7 +107,7 @@ class PluginReceiver : BroadcastReceiver() {
                 context
             }
             storageContext.getSharedPreferences("settings", Context.MODE_PRIVATE)
-                .getBoolean(PluginContract.KEY_CONNECTOR_ENABLED, false)
+                .getBoolean(PluginContract.KEY_CONNECTOR_ENABLED, PluginContract.DEFAULT_CONNECTOR_ENABLED)
         }.getOrDefault(false)
     }
 

@@ -3,7 +3,7 @@ package com.hamondev.shevery.tasker
 import android.content.Context
 import java.security.MessageDigest
 
-/** Shared automation capability embedded by the project build. */
+/** Stable automation capability supplied by this build configuration. */
 object PluginSecurity {
     @JvmStatic
     fun getOrCreateToken(@Suppress("UNUSED_PARAMETER") context: Context): String =

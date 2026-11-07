@@ -18,15 +18,15 @@ Startup and background recovery depend on the Android version, device vendor, an
 - Application ID: `cn.ying.sherverying`.
 - Retains the Shizuku-compatible authority `moe.shizuku.privileged.api` and related service interfaces.
 - Minimum Android version: Android 11 (API 30).
-- Current version: `14.6.3`, `versionCode` `69`. App, service, and API versions are read from the root `version.properties` file.
+- Current version: `14.6.4`, `versionCode` `70`. App, service, and API versions are read from the root `version.properties` file.
 
 An update can be installed over an existing app only when it is signed with the same key. An APK signed with a different key requires uninstalling the existing app first, which may remove app data. Keep the release keystore secure and reuse it for upgrades to existing installations.
 
 ## Automation token
 
-On the first build, the project generates a random 128-bit token and stores it in the untracked `.automation-token` file. Later builds from the same working copy reuse that token. Each independent working copy generates its own token. When distributing one APK, users should configure the token shown in that APK's settings.
+Connectors are enabled by default. The build embeds the token from the untracked `.automation-token` file and reuses it on subsequent builds from that checkout. Legacy random-token preferences are ignored. An explicitly disabled connector stays disabled.
 
-Do not publish a personal token. If an automation integration cannot connect, check that its configured token matches the value shown by the installed APK.
+CI uses the `RELEASE_AUTOMATION_TOKEN` secret. Internal phone deployments use a local build whose `.automation-token` must match Ding's embedded token. Both builds use the same release key but can have different tokens. Other integrations can copy their APK's token from Settings. Version `14.6.4` fixes the disabled default and supports upgrades over `14.6.3` signed with the current key, preserving pairing and permissions. Matching versions and signatures alone do not make a CI APK compatible with the internal Ding deployment.
 
 ## Build and test
 
@@ -41,14 +41,14 @@ Run unit tests and build the Debug version:
 Build the Release version:
 
 ```shell
-./gradlew :manager:assembleRelease
+./gradlew :manager:assembleRelease -PrequireReleaseSigning=true
 ```
 
 Append `-PtargetAbi=arm64-v8a` to build an arm64-only APK. On Windows, use `gradlew.bat`.
 
-Release builds read the signing configuration from the local `signing.properties` file. Do not commit that file or the keystore. First-time builders can create their own signing key. APKs built by other contributors use their own signing keys and cannot replace builds signed with this project's release key.
+Release builds require a valid keystore in local `signing.properties` and fail instead of falling back to Debug signing. Debug builds may still use Android's development signing configuration. Keep signing material out of the repository and reuse the same release key for upgrades.
 
-Official releases are built only by the GitHub Actions tag workflow. Repository administrators must configure these GitHub Actions secrets: `RELEASE_KEYSTORE_BASE64`, `RELEASE_STORE_PASSWORD`, `RELEASE_KEY_ALIAS`, `RELEASE_KEY_PASSWORD`, and `RELEASE_AUTOMATION_TOKEN`. Pushing a `v*` tag matching `version.properties` runs unit tests, signs an arm64 APK with the release key, verifies its certificate fingerprint, and creates or updates the corresponding Release. If the key is missing or the signature does not match, publication fails instead of falling back to a Debug signature. Download official APKs from [Releases](https://github.com/ying-zhang/sheverying/releases).
+The GitHub Actions tag workflow publishes releases using `RELEASE_KEYSTORE_BASE64`, `RELEASE_STORE_PASSWORD`, `RELEASE_KEY_ALIAS`, `RELEASE_KEY_PASSWORD`, and `RELEASE_AUTOMATION_TOKEN`. A `v*` tag matching `version.properties` runs tests, signs an arm64 APK with the release key, verifies its certificate, and publishes it. Internal Ding phones use a local build with a matching token. Download public releases from [Releases](https://github.com/ying-zhang/sheverying/releases).
 
 ## License and upstream projects
 

@@ -1,10 +1,10 @@
 package moe.shizuku.manager.module
 
 import moe.shizuku.manager.ShizukuSettings
+import com.hamondev.shevery.tasker.PluginContract
 
 object ModuleSettings {
 
-    private const val KEY_CONNECTOR_ENABLED = "shizuku_connector_enabled"
     private const val KEY_VERBOSE_LOGGING = "shizuku_verbose_logging"
     private const val KEY_NOTIFY_DEATH = "shizuku_notify_service_death"
     private const val KEY_NOTIFY_RECOVERY = "shizuku_notify_recovery"
@@ -16,11 +16,12 @@ object ModuleSettings {
 
 
     fun isConnectorEnabled(): Boolean {
-        return ShizukuSettings.getPreferences().getBoolean(KEY_CONNECTOR_ENABLED, false)
+        return ShizukuSettings.getPreferences().getBoolean(
+            PluginContract.KEY_CONNECTOR_ENABLED, PluginContract.DEFAULT_CONNECTOR_ENABLED)
     }
 
     fun setConnectorEnabled(value: Boolean) {
-        ShizukuSettings.getPreferences().edit().putBoolean(KEY_CONNECTOR_ENABLED, value).apply()
+        ShizukuSettings.getPreferences().edit().putBoolean(PluginContract.KEY_CONNECTOR_ENABLED, value).apply()
     }
 
     fun isVerboseLogging(): Boolean {
