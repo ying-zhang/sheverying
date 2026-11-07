@@ -1,0 +1,24 @@
+// Support both the complete project and the standalone api/ build.
+def versionFile = rootProject.file('version.properties')
+if (!versionFile.isFile()) {
+    versionFile = rootProject.file('../version.properties')
+}
+if (!versionFile.isFile()) {
+    throw new GradleException('Missing shared version.properties')
+}
+def releaseVersion = new Properties()
+versionFile.withInputStream { releaseVersion.load(it) }
+def releaseName = releaseVersion.getProperty('versionName', '')
+def releaseCode = releaseVersion.getProperty('versionCode', '')
+if (!(releaseName ==~ /\d+\.\d+\.\d+/) || !(releaseCode ==~ /[1-9]\d*/)) {
+    throw new GradleException('version.properties requires semantic versionName (major.minor.patch) and a positive versionCode')
+}
+def parts = releaseName.split(/\./)
+ext {
+    api_version_major = parts[0].toInteger()
+    api_version_minor = parts[1].toInteger()
+    api_version_patch = parts[2].toInteger()
+    api_version_name = releaseName
+    release_version_code = releaseCode.toInteger()
+}
+

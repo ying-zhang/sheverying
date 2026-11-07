@@ -1,0 +1,96 @@
+name: Android Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: platform-tools
+      - name: Install Android SDK packages
+        run: sdkmanager "platforms;android-37.0" "build-tools;37.0.0" "ndk;30.0.16248370" "cmake;3.22.1"
+      - uses: gradle/actions/setup-gradle@v6
+      - name: Configure release signing and automation token
+        env:
+          RELEASE_KEYSTORE_BASE64: ${{ secrets.RELEASE_KEYSTORE_BASE64 }}
+          RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
+          RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
+          RELEASE_AUTOMATION_TOKEN: ${{ secrets.RELEASE_AUTOMATION_TOKEN }}
+        run: |
+          set -euo pipefail
+          [[ -n "$RELEASE_KEYSTORE_BASE64" ]]
+          [[ -n "$RELEASE_STORE_PASSWORD" ]]
+          [[ -n "$RELEASE_KEY_ALIAS" ]]
+          [[ -n "$RELEASE_KEY_PASSWORD" ]]
+          [[ "$RELEASE_AUTOMATION_TOKEN" =~ ^[0-9a-f]{32}$ ]]
+          KEYSTORE_PATH="$RUNNER_TEMP/sheverying-release.keystore"
+          printf '%s' "$RELEASE_KEYSTORE_BASE64" | base64 --decode > "$KEYSTORE_PATH"
+          chmod 600 "$KEYSTORE_PATH"
+          {
+            printf 'KEYSTORE_FILE=%s\n' "$KEYSTORE_PATH"
+            printf 'KEYSTORE_PASSWORD=%s\n' "$RELEASE_STORE_PASSWORD"
+            printf 'KEYSTORE_ALIAS=%s\n' "$RELEASE_KEY_ALIAS"
+            printf 'KEYSTORE_ALIAS_PASSWORD=%s\n' "$RELEASE_KEY_PASSWORD"
+          } > signing.properties
+          chmod 600 signing.properties
+          printf '%s\n' "$RELEASE_AUTOMATION_TOKEN" > .automation-token
+
+      - name: Run tests and build signed arm64 release
+        env:
+          RELEASE_AUTOMATION_TOKEN: ${{ secrets.RELEASE_AUTOMATION_TOKEN }}
+        run: |
+          set -euo pipefail
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          VERSION_NAME="$(sed -n 's/^versionName=//p' version.properties)"
+          VERSION_CODE="$(sed -n 's/^versionCode=//p' version.properties)"
+          [[ "$TAG_VERSION" == "$VERSION_NAME" ]]
+          ./gradlew :manager:testDebugUnitTest :manager:assembleRelease -PtargetAbi=arm64-v8a -PrequireReleaseSigning=true
+          APK="out/apk/sheverying-v${VERSION_NAME}-release.apk"
+          test -f "$APK"
+          "$ANDROID_HOME/build-tools/37.0.0/aapt" dump badging "$APK" | grep -F "package: name='cn.ying.sherverying' versionCode='${VERSION_CODE}' versionName='${VERSION_NAME}'"
+          ABIS="$(unzip -Z1 "$APK" | awk -F/ '$1 == "lib" { print $2 }' | sort -u)"
+          [[ "$ABIS" == "arm64-v8a" ]]
+          "$ANDROID_HOME/build-tools/37.0.0/apksigner" verify --verbose "$APK"
+          SIGNER_INFO="$("$ANDROID_HOME/build-tools/37.0.0/apksigner" verify --print-certs "$APK")"
+          grep -Fq '4232b7bcee8fc3f3abcdd57adb80ec30ddf86d1ae9ff984d4e5d053cf69578e3' <<< "$SIGNER_INFO"
+          APK_SHA256="$(sha256sum "$APK" | cut -d' ' -f1)"
+          {
+            printf '## Sheverying %s\n\n' "$VERSION_NAME"
+            printf '此版本由正式发布流程构建并使用 Sheverying release key 签名。\n\n'
+            printf '### 版本与兼容性\n\n- 应用包名：`cn.ying.sherverying`\n- 版本：`%s`（`versionCode` `%s`）\n- ABI：`arm64-v8a`\n- 最低 Android 版本：Android 11（API 30）\n\n' "$VERSION_NAME" "$VERSION_CODE"
+            printf '### 下载与校验\n\n- 文件：`%s`\n- 签名证书 SHA-256：`4232b7bcee8fc3f3abcdd57adb80ec30ddf86d1ae9ff984d4e5d053cf69578e3`\n- APK SHA-256：`%s`\n\n' "$(basename "$APK")" "$APK_SHA256"
+            printf '### 自动化令牌\n\n此 APK 的内置令牌为：`%s`。请将自动化工具配置为此值。同一 APK 的所有用户使用相同令牌；源码自行构建的 APK 会生成独立令牌。\n\n' "$RELEASE_AUTOMATION_TOKEN"
+            printf '### 安装与升级\n\n覆盖安装要求已安装版本与此 APK 使用相同的 release key。签名私钥不会随源码或 APK 发布。\n'
+          } > "$RUNNER_TEMP/release-notes.md"
+
+      - name: Publish signed APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          VERSION_NAME="$(sed -n 's/^versionName=//p' version.properties)"
+          APK="out/apk/sheverying-v${VERSION_NAME}-release.apk"
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" "$APK" --clobber
+            gh release edit "$GITHUB_REF_NAME" --title "Sheverying ${VERSION_NAME}（versionCode $(sed -n 's/^versionCode=//p' version.properties)）" --notes-file "$RUNNER_TEMP/release-notes.md"
+          else
+            gh release create "$GITHUB_REF_NAME" "$APK" --title "Sheverying ${VERSION_NAME}（versionCode $(sed -n 's/^versionCode=//p' version.properties)）" --notes-file "$RUNNER_TEMP/release-notes.md"
+          fi

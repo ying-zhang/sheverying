@@ -1,0 +1,353 @@
+<resources>
+    <string name="accessibility_navigate_up"><![CDATA[返回上一级]]></string>
+    <string name="accessibility_close"><![CDATA[关闭]]></string>
+    <string name="accessibility_more_options"><![CDATA[更多选项]]></string>
+    <string name="home_status_service_is_running"><![CDATA[%1$s 正在运行]]></string>
+    <string name="home_status_service_not_running"><![CDATA[%1$s 未运行]]></string>
+    <string name="home_status_service_version"><![CDATA[版本 %2$s, %1$s]]></string>
+    <string name="home_status_service_version_update"><![CDATA[版本 %2$s, %1$s<br/>重新启动以更新到版本 %3$s]]></string>
+    <string name="home_adb_title"><![CDATA[通过连接电脑启动]]></string>
+    <string name="home_adb_description">连接电脑并开启 USB 调试后运行以下命令。手机重启后需重新运行：\n\n%1$s</string>
+    <string name="home_adb_button_view_help"><![CDATA[阅读帮助]]></string>
+    <string name="home_adb_button_view_command"><![CDATA[查看命令]]></string>
+    <string name="home_adb_dialog_view_command_notice"><![CDATA[还有其他注意事项，请先确认您已阅读帮助文档。]]></string>
+    <string name="home_adb_dialog_view_command_copy_button"><![CDATA[复制]]></string>
+    <string name="home_wireless_adb_title"><![CDATA[通过无线调试启动]]></string>
+    <string name="home_local_network_title"><![CDATA[本地网络访问]]></string>
+    <string name="home_local_network_description"><![CDATA[在此 Android 版本上，无线调试需要 %1$s 权限。]]></string>
+    <string name="home_local_network_grant"><![CDATA[授予权限]]></string>
+    <string name="home_local_network_permission_denied"><![CDATA[无线调试需要本地网络访问权限。]]></string>
+    <string name="dialog_adb_discovery"><![CDATA[正在搜索无线调试服务]]></string>
+    <string name="dialog_adb_discovery_message"><![CDATA[请在“开发者选项”中开启“无线调试”。网络更改时，无线调试会自动关闭。
+
+注意：请勿关闭“开发者选项”或“USB 调试”，否则 Shevery 将停止运行。]]></string>
+    <string name="dialog_adb_discovery_message_toggle_wireless_debugging"><![CDATA[如果一直处于搜索状态，请尝试关闭并重新开启“无线调试”。]]></string>
+    <string name="dialog_adb_port"><![CDATA[端口]]></string>
+    <string name="dialog_adb_invalid_port"><![CDATA[端口必须是 1 到 65535 之间的整数。]]></string>
+    <string name="adb_pairing"><![CDATA[配对]]></string>
+    <string name="dialog_adb_pairing_title"><![CDATA[配对设备]]></string>
+    <string name="dialog_adb_pairing_discovery"><![CDATA[正在搜索配对服务]]></string>
+    <string name="dialog_adb_pairing_paring_code"><![CDATA[配对码]]></string>
+    <string name="paring_code_is_wrong"><![CDATA[配对码错误。]]></string>
+    <string name="cannot_connect_port"><![CDATA[无法连接到无线调试服务。]]></string>
+    <string name="dialog_wireless_adb_not_enabled"><![CDATA[无线调试未开启。
+注意：Android 11 以下版本需要连接电脑。]]></string>
+    <string name="dialog_adb_pairing_message"><![CDATA[请按照以下步骤开始配对：“开发者选项” - “无线调试” - “使用配对码配对设备”。
+
+配对过程开始后，您可以输入配对码。]]></string>
+    <string name="adb_pairing_requires_multi_window"><![CDATA[请先进入分屏（多窗口）模式。]]></string>
+    <string name="adb_pairing_requires_multi_window_reason"><![CDATA[系统要求配对对话框始终可见，分屏模式是使应用和系统对话框同时可见的唯一方法。]]></string>
+    <string name="adb_error_key_store"><![CDATA[无法生成无线调试密钥。
+这可能是因为此设备的 KeyStore 机制已损坏。]]></string>
+    <string name="adb_pair_required"><![CDATA[请先完成配对步骤。]]></string>
+    <string name="development_settings"><![CDATA[开发者选项]]></string>
+    <string name="notification_settings"><![CDATA[通知设置]]></string>
+    <string name="adb_pairing_tutorial_title"><![CDATA[配对 Shevery 与您的设备]]></string>
+    <string name="adb_pairing_tutorial_content_notification"><![CDATA[Shevery 发送的通知将帮助您完成配对。]]></string>
+    <string name="adb_pairing_tutorial_content_steps"><![CDATA[前往“开发者选项” - “无线调试”。点击“使用配对码配对设备”，您将看到一个六位数配对码。]]></string>
+    <string name="adb_pairing_tutorial_content_enter_pairing_code"><![CDATA[在通知栏中输入配对码以完成配对。]]></string>
+    <string name="adb_pairing_tutorial_content_notification_blocked"><![CDATA[配对过程需要与 Shevery 通知进行交互，请允许 Shevery 发送通知。]]></string>
+    <string name="adb_pairing_tutorial_content_miui_2"><![CDATA[否则，您可能无法在通知中输入配对码。]]></string>
+    <string name="adb_pairing_tutorial_content_left_is_clickable"><![CDATA[请注意，“无线调试”选项左侧文字区域可点击进入新页面，仅开启右侧开关是不够的。]]></string>
+    <string name="adb_pairing_tutorial_content_finish"><![CDATA[返回 Shevery 并启动服务。]]></string>
+    <string name="adb_pairing_tutorial_content_network"><![CDATA[Shevery 需要访问本地网络，这由网络权限控制。]]></string>
+    <string name="adb_pairing_tutorial_content_network_limation_not_foreground"><![CDATA[某些系统（如 MIUI）在应用未处于前台时会禁用网络访问，请为 Shevery 关闭电池优化。]]></string>
+    <string name="home_root_title"><![CDATA[启动（针对已 Root 设备）]]></string>
+    <string name="home_root_description"><![CDATA[此外，Shevery 可以在开机时自动启动。如果未启动，请检查系统或第三方工具是否限制了 Shevery。<br/>可以参考 %s。]]></string>
+    <string name="home_root_button_start"><![CDATA[启动]]></string>
+    <string name="home_app_management_title"><![CDATA[应用管理]]></string>
+    <plurals name="home_app_management_authorized_apps_count">
+        <item quantity="other"><![CDATA[已授权 %d 个应用]]></item>
+    </plurals>
+    <string name="home_app_management_view_authorized_apps"><![CDATA[点击管理已授权的应用]]></string>
+    <string name="home_app_management_empty"><![CDATA[请求或声明使用 Shevery 的应用将在此处显示。]]></string>
+    <string name="home_quick_wireless"><![CDATA[无线 ADB]]></string>
+    <string name="home_quick_tcp">TCP 5555</string>
+    <string name="home_diagnostics_title"><![CDATA[诊断信息]]></string>
+    <string name="home_diagnostics_copied"><![CDATA[诊断信息已复制到剪贴板。]]></string>
+    <string name="home_adb_is_limited_title"><![CDATA[需要额外步骤]]></string>
+    <string name="home_adb_is_limited_description"><![CDATA[您的设备厂商限制了 ADB 权限，使用 Shevery 的应用将无法正常工作。
+
+通常可以在“开发者选项”中调整相关设置。请阅读帮助了解详情。
+
+您可能需要重新启动 Shevery 以使操作生效。]]></string>
+    <string name="app_management_select_all"><![CDATA[全选]]></string>
+    <string name="app_management_deselect_all"><![CDATA[取消全选]]></string>
+    <string name="app_management_dialog_adb_is_limited_title"><![CDATA[ADB 权限受限]]></string>
+    <string name="app_management_dialog_adb_is_limited_message"><![CDATA[您的设备厂商很有可能限制了 ADB 权限。<p>您可以在<b><a href="%1$s">此文档</a></b>中找到针对您系统的解决方案。]]></string>
+    <string name="app_management_item_summary_requires_root"><![CDATA[* 需要 Shevery 以 Root 方式运行]]></string>
+    <string name="app_management_loading"><![CDATA[正在加载应用…]]></string>
+    <string name="app_management_search_hint"><![CDATA[搜索应用…]]></string>
+    <string name="app_management_clear_search"><![CDATA[清除搜索]]></string>
+    <string name="app_management_filter_all"><![CDATA[全部 (%1$d)]]></string>
+    <string name="app_management_filter_allowed"><![CDATA[已允许 (%1$d)]]></string>
+    <string name="app_management_filter_denied"><![CDATA[已拒绝 (%1$d)]]></string>
+    <string name="app_management_no_search_results"><![CDATA[没有匹配的应用]]></string>
+    <string name="app_management_no_search_results_desc"><![CDATA[请检查拼写或重置筛选条件。]]></string>
+    <string name="app_management_clear_filters"><![CDATA[重置筛选]]></string>
+    <string name="home_terminal_title"><![CDATA[在终端应用中使用 Sheverying]]></string>
+    <string name="home_terminal_description"><![CDATA[在终端应用中通过 Sheverying 执行命令]]></string>
+    <string name="terminal_tutorial_1"><![CDATA[首先，将文件导出到您选择的任何位置。您将找到两个文件：%1$s 和 %2$s。]]></string>
+    <string name="terminal_tutorial_1_description"><![CDATA[如果所选文件夹中存在同名文件，它们将被覆盖。
+
+导出功能使用 SAF（存储访问框架）。据报道 MIUI 的 SAF 功能存在缺陷；如果是这种情况，从 Shevery APK 中提取文件或从 GitHub 下载。]]></string>
+    <string name="terminal_export_files"><![CDATA[导出文件]]></string>
+    <string name="terminal_tutorial_2"><![CDATA[然后，使用任何文本编辑器打开并编辑 %1$s。]]></string>
+    <string name="terminal_tutorial_2_description"><![CDATA[例如，如果您想在 %1$s 中使用 Shevery，则需要将 %2$s 替换为 %3$s（%4$s 是 %1$s 的包名）。]]></string>
+    <string name="terminal_tutorial_3"><![CDATA[最后，将文件移动到终端应用可以访问的位置，即可使用 %1$s 执行命令。]]></string>
+    <string name="terminal_tutorial_3_description"><![CDATA[提示：向 %1$s 授予可执行权限并将其添加到 %2$s，即可直接使用 %1$s。]]></string>
+    <string name="rish_description"><![CDATA[使用 %1$s，在任何终端应用中，您都可以连接并交互 Shevery 运行的 Shell。<p>关于 %1$s 的详细用法，点击查看文档。]]></string>
+    <string name="app_detail_privileges_title">Shizuku 权限</string>
+    <string name="app_detail_shizuku_access">Shizuku 访问权限</string>
+    <string name="app_detail_state_allowed">已允许</string>
+    <string name="app_detail_state_denied">已拒绝</string>
+    <string name="app_detail_session_only">仅本次会话</string>
+    <string name="app_detail_session_only_summary">仅本次会话有效；关闭此开关可改为永久授权</string>
+    <string name="app_detail_runtime_permissions">运行时权限</string>
+    <string name="app_detail_runtime_permissions_empty">此应用未声明运行时权限</string>
+    <string name="app_detail_info_title">应用信息</string>
+    <string name="app_detail_package">包名</string>
+    <string name="app_detail_version">版本</string>
+    <string name="app_detail_version_unknown">未知</string>
+    <string name="app_detail_uid">UID</string>
+    <string name="settings_title"><![CDATA[设置]]></string>
+    <string name="settings_language"><![CDATA[语言]]></string>
+    <string name="settings_black_night_theme"><![CDATA[纯黑夜间主题]]></string>
+    <string name="settings_black_night_theme_summary"><![CDATA[开启夜间模式时使用纯黑背景]]></string>
+    <string name="settings_startup"><![CDATA[启动设置]]></string>
+    <string name="settings_start_on_boot"><![CDATA[通过 Root 开机自启]]></string>
+    <string name="settings_start_on_boot_adb"><![CDATA[通过无线调试开机自启]]></string>
+    <string name="settings_start_on_boot_adb_summary"><![CDATA[开机时短暂开启无线调试并通过 ADB 启动 Sheverying（TCP 端口 5555），无需 Root，仅需短暂连接 Wi-Fi。]]></string>
+    <string name="settings_start_on_boot_adb_summary_no_tcp"><![CDATA[开机时短暂开启无线调试并通过 ADB 启动 Sheverying，无需 Root，仅需短暂连接 Wi-Fi。]]></string>
+    <string name="settings_start_on_boot_adb_warning_no_tcp"><![CDATA[TCP 绑定（端口 5555）已关闭：无线调试将保持开启状态。]]></string>
+    <string name="settings_start_on_boot_adb_missing_permission_title"><![CDATA[缺少权限]]></string>
+    <string name="settings_start_on_boot_adb_not_running"><![CDATA[Shevery 未运行，请先启动服务，然后返回并启用此设置。]]></string>
+    <string name="settings_start_on_boot_adb_grant_failed"><![CDATA[自动授予权限失败，请从电脑运行以下命令手动授予：]]></string>
+    <string name="settings_start_on_boot_adb_missing_permission_copy"><![CDATA[复制命令]]></string>
+    <string name="settings_start_on_boot_adb_missing_permission_instruction"><![CDATA[使用方法：
+1. 将设备连接到电脑（USB 或无线调试）。
+2. 在终端中运行上方的命令。]]></string>
+    <string name="settings_use_system_color"><![CDATA[使用系统主题颜色]]></string>
+    <string name="action_about"><![CDATA[关于]]></string>
+    <string name="about_source_code_button"><![CDATA[源代码]]></string>
+    <string name="about_project_credit">Sheverying 修改自 Shevery 开源项目。</string>
+    <string name="action_stop"><![CDATA[停止 Shevery]]></string>
+    <string name="service_already_stopped"><![CDATA[Shevery 服务已经停止。]]></string>
+    <string name="notification_service_starting"><![CDATA[正在启动 Shevery 服务…]]></string>
+    <string name="notification_service_start_failed"><![CDATA[启动 Shevery 服务失败。]]></string>
+    <string name="notification_channel_adb_pairing"><![CDATA[无线调试配对]]></string>
+    <string name="notification_adb_pairing_input_paring_code"><![CDATA[输入配对码]]></string>
+    <string name="notification_adb_pairing_searching_for_service_title"><![CDATA[正在搜索配对服务]]></string>
+    <string name="notification_adb_pairing_service_found_title"><![CDATA[已找到配对服务]]></string>
+    <string name="notification_adb_pairing_stop_searching"><![CDATA[停止搜索]]></string>
+    <string name="notification_adb_pairing_working_title"><![CDATA[正在配对]]></string>
+    <string name="notification_adb_pairing_succeed_title"><![CDATA[配对完成]]></string>
+    <string name="notification_adb_pairing_succeed_text"><![CDATA[您现在可以启动 Shevery 服务。]]></string>
+    <string name="notification_adb_pairing_failed_title"><![CDATA[配对失败]]></string>
+    <string name="permission_label"><![CDATA[使用 Shevery]]></string>
+    <string name="permission_description"><![CDATA[允许应用使用 Shevery。]]></string>
+    <string name="permission_warning_template"><![CDATA[要允许 <b>%1$s</b> %2$s 吗？]]></string>
+    <string name="grant_dialog_button_allow_always"><![CDATA[总是允许]]></string>
+    <string name="grant_dialog_button_deny"><![CDATA[拒绝]]></string>
+    <string name="starter"><![CDATA[启动器]]></string>
+    <string name="start_with_root_failed"><![CDATA[无法启动服务，因为未授予 Root 权限或此设备未 Root。]]></string>
+    <string name="toast_copied_to_clipboard"><![CDATA[%s
+已复制到剪贴板。]]></string>
+    <string name="toast_copied_to_clipboard_with_text"><![CDATA[<b>%s</b> 已复制到剪贴板。]]></string>
+    <string name="dialog_legacy_not_support_title"><![CDATA[%1$s 不支持现代 Shevery]]></string>
+    <string name="dialog_legacy_not_support_message"><![CDATA[旧版 Shevery 自 2019 年 3 月起已被弃用，无法在较新的 Android 系统上运行。<p>请联系 <b>%1$s</b> 的开发者进行更新。]]></string>
+    <string name="dialog_requesting_legacy_title"><![CDATA[%1$s 正在请求旧版 Shevery]]></string>
+    <string name="dialog_requesting_legacy_message"><![CDATA[<b>%1$s</b> 具备现代 Shevery 支持，但正在请求旧版 Shevery。这可能是由于 Shevery 未在运行引起的，请在 Shevery 应用中检查。<p>旧版 Shevery 自 2019 年 3 月起已被弃用。]]></string>
+    <string name="dialog_requesting_legacy_button_open_shizuku"><![CDATA[打开 Shevery]]></string>
+    <string name="shizuku_connectors_title"><![CDATA[Shevery 连接器]]></string>
+    <string name="shizuku_connectors_summary"><![CDATA[允许自动化应用通过广播控制 Sheverying]]></string>
+    <string name="unsafe_warning_title"><![CDATA[警告]]></string>
+    <string name="unsafe_warning_message">使用固定内置令牌的自动化应用将可以启停服务。是否启用连接器？</string>
+    <string name="settings_tcp_mode"><![CDATA[TCP 模式]]></string>
+    <string name="settings_tcp_mode_summary"><![CDATA[将 ADB 启动重新绑定到 TCP 5555 端口，使 Sheverying 无需依赖不断变化的无线调试端口即可重新连接。]]></string>
+    <string name="settings_restart_dialog_title"><![CDATA[需要重新启动]]></string>
+    <string name="settings_restart_dialog_message"><![CDATA[Shevery 需要重新启动以应用 TCP 模式设置。]]></string>
+    <string name="settings_service_group"><![CDATA[服务维护]]></string>
+    <string name="settings_application"><![CDATA[应用]]></string>
+    <string name="settings_appearance"><![CDATA[外观]]></string>
+    <string name="lab_service_behavior_title"><![CDATA[服务行为]]></string>
+    <string name="lab_notify_death_title"><![CDATA[服务停止时通知]]></string>
+    <string name="lab_notify_death_summary"><![CDATA[在 Sheverying 服务意外停止时显示通知（ErrorProtect 开启时始终显示）]]></string>
+    <string name="notification_control_channel_name"><![CDATA[Shevery 控制]]></string>
+    <string name="notification_control_title_running"><![CDATA[Shevery 正在运行]]></string>
+    <string name="notification_control_title_stopped"><![CDATA[Shevery 已停止]]></string>
+    <string name="notification_control_text_running"><![CDATA[点击打开 Shevery 或展开以停止服务。]]></string>
+    <string name="notification_control_text_stopped"><![CDATA[点击打开 Shevery 或展开以启动服务。]]></string>
+    <string name="notification_control_action_start"><![CDATA[启动]]></string>
+    <string name="notification_control_action_stop"><![CDATA[停止]]></string>
+    <string name="notification_startup_channel_name"><![CDATA[Shevery 启动]]></string>
+    <string name="notification_startup_title"><![CDATA[正在启动 Shevery]]></string>
+    <string name="notification_startup_failed"><![CDATA[启动 Shevery 失败。]]></string>
+    <string name="notification_startup_no_permission"><![CDATA[无法开机自启：缺少必要权限，请打开 Shevery 并先授予权限。]]></string>
+    <string name="notification_startup_waiting_unlock"><![CDATA[等待设备解锁以启动…]]></string>
+    <string name="notification_startup_cancel"><![CDATA[取消]]></string>
+    <string name="notification_startup_attempt_now"><![CDATA[立即尝试]]></string>
+    <string name="wadb_notification_title"><![CDATA[正在启动 Shevery…]]></string>
+    <string name="wadb_notification_wifi_required"><![CDATA[正在等待 Wi-Fi 连接]]></string>
+    <string name="wadb_notification_retry"><![CDATA[正在等待重试]]></string>
+    <string name="wadb_error_title"><![CDATA[开机自启出错]]></string>
+    <string name="wadb_error_notify_dev"><![CDATA[点击重新启动 Shevery。]]></string>
+    <string name="wadb_permission_error_notification_content"><![CDATA[Shevery 无法开机自启，请打开 Shevery 检查问题。]]></string>
+    <string name="wadb_notification_attempt_now"><![CDATA[立即尝试]]></string>
+    <string name="diagnostics_local_network"><![CDATA[本地网络]]></string>
+    <string name="error_protect_title"><![CDATA[ErrorProtect（看门狗）]]></string>
+    <string name="error_protect_summary"><![CDATA[监测服务状态，发现异常或崩溃时自动重启 Sheverying。]]></string>
+    <string name="accessibility_manager_lab_group"><![CDATA[无障碍]]></string>
+    <string name="accessibility_daemon_channel_name"><![CDATA[无障碍服务保活]]></string>
+    <string name="accessibility_daemon_notification_title"><![CDATA[无障碍服务保活已激活]]></string>
+    <string name="accessibility_daemon_notification_text"><![CDATA[已固定的无障碍服务在被禁用时将被恢复]]></string>
+    <string name="permission_group_label"><![CDATA[Shevery]]></string>
+    <string name="permission_group_description"><![CDATA[@string/permission_label]]></string>
+    <string name="starting_root_shell"><![CDATA[正在启动 root 终端……]]></string>
+    <string name="settings_restart_dialog_message_wifi_required"><![CDATA[首次重启时需要连接 Wi-Fi，因为 Shevery 必须先连接到当前的无线调试端口，然后才能将 ADB 切换到 5555。]]></string>
+    <string name="home_tab_status"><![CDATA[状态]]></string>
+    <string name="settings_keep_usb_debugging"><![CDATA[保持 USB 调试]]></string>
+    <string name="settings_keep_usb_debugging_summary"><![CDATA[通过系统设置接口把 USB 调试保持为打开。服务成功启动并获得写入安全设置权限后才会生效。关闭后不再自动打开。]]></string>
+    <string name="settings_disable_lock_screen"><![CDATA[关闭锁屏]]></string>
+    <string name="settings_disable_lock_screen_summary"><![CDATA[服务运行后关闭滑动锁屏，下次开机不必先解锁。设了 PIN、图案或密码的手机会保持原样。关闭这个选项会把锁屏加回来。]]></string>
+    <string name="settings_auto_pair_wireless_debug"><![CDATA[自动配对无线调试]]></string>
+    <string name="settings_auto_pair_wireless_debug_summary"><![CDATA[屏幕上出现配对码时会自动配对，这个配对码就不能再给电脑用。要用电脑配对时，先关掉这项，配对码会留在屏幕上。]]></string>
+    <string name="settings_reboot_now"><![CDATA[重启手机]]></string>
+    <string name="settings_reboot_now_summary"><![CDATA[若服务可用，重启本机]]></string>
+    <string name="settings_reboot_confirm_title"><![CDATA[立即重启手机？]]></string>
+    <string name="settings_reboot_confirm_message"><![CDATA[手机会马上重启。]]></string>
+    <string name="settings_reboot_confirm_action"><![CDATA[重启]]></string>
+    <string name="settings_reboot_failed"><![CDATA[没能重启。服务没在运行，或者系统拒绝了。]]></string>
+    <string name="diagnostics_brief_device"><![CDATA[Android %1$s · %2$s]]></string>
+    <string name="diagnostics_brief_adb"><![CDATA[adb %1$d · %2$s]]></string>
+    <string name="diagnostics_brief_root"><![CDATA[root · %1$s]]></string>
+    <string name="diagnostics_brief_not_started"><![CDATA[尚未启动]]></string>
+    <string name="diagnostics_brief_last_adb"><![CDATA[未运行 · 上次无线调试]]></string>
+    <string name="diagnostics_brief_last_root"><![CDATA[未运行 · 上次 root]]></string>
+    <string name="diagnostics_perm_full"><![CDATA[权限完整]]></string>
+    <string name="diagnostics_perm_limited"><![CDATA[权限受限]]></string>
+    <string name="diagnostics_mark_on"><![CDATA[开]]></string>
+    <string name="diagnostics_mark_off"><![CDATA[关]]></string>
+    <string name="diagnostics_brief_switches"><![CDATA[USB调试 %1$s · 无线调试 %2$s · 5555 %3$s · 开机自启 %4$s]]></string>
+    <string name="diagnostics_brief_options"><![CDATA[关锁屏 %1$s · 自动配对 %2$s · 崩溃重启 %3$s · 安全设置 %4$s]]></string>
+    <string name="diagnostics_local_network_missing"><![CDATA[未授予：%1$s]]></string>
+    <string name="diagnostics_state_granted"><![CDATA[已授予]]></string>
+    <string name="diagnostics_state_not_granted"><![CDATA[未授予]]></string>
+    <string name="settings_lock_screen_hidden"><![CDATA[已关闭锁屏]]></string>
+    <string name="settings_lock_screen_restored"><![CDATA[已恢复锁屏]]></string>
+    <string name="settings_lock_screen_pending"><![CDATA[服务还没运行，下次启动后会改锁屏。]]></string>
+    <string name="settings_lock_screen_failed"><![CDATA[没能修改锁屏。设了密码，或系统不接受这个开关时，锁屏保持原样。]]></string>
+    <string name="automation_broadcast_title"><![CDATA[广播控制]]></string>
+    <string name="automation_broadcast_summary"><![CDATA[复制动作、包名或命令，在自动化应用里发送广播来控制服务。]]></string>
+    <string name="lab_stop_service_title"><![CDATA[停止服务]]></string>
+    <string name="lab_stop_service_summary"><![CDATA[停止正在运行的服务。日常使用一般不需要。]]></string>
+    <string name="a11y_wireless_debug_title"><![CDATA[通过无障碍设置无线调试]]></string>
+    <string name="a11y_wireless_debug_summary"><![CDATA[自动确认无线调试提示，并识别配对码完成配对。需要在系统里开启一次 Sheverying 无障碍服务。]]></string>
+    <string name="a11y_wireless_debug_service_description"><![CDATA[确认无线调试，并读取配对码，让 Sheverying 少做手动操作。]]></string>
+    <string name="adb_pairing_tutorial_content_miui"><![CDATA[MIUI用户可能需要在系统设置的“通知”-“通知栏”中将通知样式切换为“Android”。]]></string>
+    <string name="tcp_prompt_dialog_title"><![CDATA[启用持久 TCP 模式？]]></string>
+    <string name="tcp_prompt_dialog_message"><![CDATA[Shevery 正在运行，但持久 TCP 模式当前已禁用。\n\n启用 TCP 模式将允许 Shevery 继续运行并在后台自动重新连接，即使没有 Wi-Fi，直到您的设备重新启动。]]></string>
+    <string name="tcp_prompt_dialog_enable"><![CDATA[启用]]></string>
+    <string name="tcp_prompt_dialog_later"><![CDATA[现在不行]]></string>
+    <string name="tcp_prompt_dialog_do_not_remind"><![CDATA[不要再提醒我]]></string>
+
+    <!-- AI Providers -->
+
+    <!-- Comput / Commandium -->
+
+    <!-- Diagnostics -->
+
+    <!-- Lab Features -->
+    <string name="lab_notify_recovery_summary"><![CDATA[当 ErrorProtect（看门狗）成功重启服务时显示通知]]></string>
+    <string name="lab_notify_recovery_title"><![CDATA[自动恢复时通知]]></string>
+    <string name="lab_maintenance_title"><![CDATA[维护]]></string>
+    <string name="lab_restart_service_title"><![CDATA[立即重启服务]]></string>
+    <string name="lab_restart_service_summary"><![CDATA[使用上次的启动方式重启 Shevery 服务]]></string>
+
+    <!-- Module Catalog -->
+
+    <!-- Notifications -->
+
+    <!-- Wi-Fi -->
+    <string name="settings_wifi_reassert_summary"><![CDATA[当系统清除了无线调试标志时将其恢复（在 ADB 启动和 Wi-Fi 重连时）。不会将其关闭。]]></string>
+    <string name="settings_wifi_reassert_title"><![CDATA[重新设置无线调试]]></string>
+
+    <!-- Automation (Tasker / MacroDroid) -->
+    <string name="automation_settings_title"><![CDATA[自动化]]></string>
+    <string name="automation_section_summary"><![CDATA[用广播启动、停止或切换服务]]></string>
+    <string name="automation_dialog_actions_header"><![CDATA[广播动作]]></string>
+    <string name="automation_dialog_target_header"><![CDATA[目标包名]]></string>
+    <string name="automation_copied_to_clipboard"><![CDATA[已复制到剪贴板]]></string>
+    <string name="automation_package_label"><![CDATA[包名]]></string>
+    <string name="automation_action_start"><![CDATA[启动服务]]></string>
+    <string name="automation_action_stop"><![CDATA[停止服务]]></string>
+    <string name="automation_action_restart"><![CDATA[重启服务]]></string>
+    <string name="automation_action_toggle"><![CDATA[切换服务状态]]></string>
+
+    <!-- Backups, Extras & Classic Nav -->
+    <string name="settings_extras_title"><![CDATA[附加功能]]></string>
+    <string name="settings_section_extras_summary"><![CDATA[无障碍、诊断与实验性功能]]></string>
+    <string name="settings_classic_nav"><![CDATA[传统底栏导航]]></string>
+    <string name="settings_classic_nav_summary"><![CDATA[使用传统固定底栏替代悬浮胶囊]]></string>
+
+    <!-- Home - Automation -->
+    <string name="home_automation_label_extras">附加参数（认证令牌）</string>
+    <string name="home_automation_label_shell">Shell / Termux 命令</string>
+    <string name="automation_security_group_title">身份验证与安全</string>
+    <string name="automation_security_description">广播控制使用所有安装共用的固定内置 auth 令牌（-e auth &lt;token&gt;）。请仅为可信自动化应用启用连接器。使用原默认令牌的配置无需修改。</string>
+    <string name="automation_target_component_label">接收器组件</string>
+
+    <!-- Automation Alert Notifications -->
+    <string name="notification_channel_automation_alerts">自动化提醒</string>
+    <string name="notification_auth_missing_title">需要身份验证令牌</string>
+    <string name="notification_auth_missing_message">请在 Intent 中添加“auth”额外数据。您可以在“设置 → 自动化”中找到您的令牌。</string>
+    <string name="notification_auth_invalid_title">身份验证令牌无效</string>
+    <string name="notification_auth_invalid_message">请确保 Intent 中的令牌与 Shevery 设置中的令牌一致。</string>
+    <string name="notification_connectors_disabled_title">自动化连接器已禁用</string>
+    <string name="notification_connectors_disabled_message">自动化 Intent 已被拦截，因为 Shevery 连接器在设置中已禁用。点击以启用。</string>
+
+    <!-- Home - Adb dialog -->
+
+    <!-- Permission related -->
+    <string name="grant_dialog_button_allow_once"><![CDATA[仅允许这一次]]></string>
+
+    <!-- Application management additions -->
+    <string name="app_management_made_permanent"><![CDATA[已永久授权]]></string>
+    <string name="app_management_onetime_badge"><![CDATA[仅本次会话]]></string>
+
+    <!-- Settings section summaries -->
+    <string name="settings_section_startup_summary"><![CDATA[开机自启、看门狗与连接]]></string>
+    <string name="settings_section_appearance_summary"><![CDATA[语言、夜间主题与颜色]]></string>
+    <string name="settings_section_about_summary"><![CDATA[检查更新、版本与说明]]></string>
+
+    <!-- Device Owner & Profile Owner -->
+
+    <!-- Security -->
+    <string name="security_locked_title"><![CDATA[Shevery 已锁定]]></string>
+    <string name="security_locked_desc"><![CDATA[使用 Shevery 需要先验证身份]]></string>
+    <string name="security_unlock_button"><![CDATA[解锁]]></string>
+
+    <!-- Compatibility stubs -->
+    <string name="whitelist_mode_title"><![CDATA[白名单模式]]></string>
+    <string name="shizuku_whitelist_summary"><![CDATA[拦截权限弹窗，并拒绝未在此列表中开启的应用]]></string>
+
+    <!-- USB debugging hide -->
+
+    <!-- Firewall -->
+
+    <!-- Appearance - navigation & motion blur -->
+    <string name="settings_swipe_between_tabs"><![CDATA[在标签页之间滑动]]></string>
+    <string name="settings_swipe_between_tabs_summary"><![CDATA[在主界面左右滑动以切换状态和设置]]></string>
+    <string name="settings_motion_blur"><![CDATA[动态模糊]]></string>
+    <string name="settings_motion_blur_summary"><![CDATA[在标签页之间滑动以及上下滚动列表时对内容应用模糊]]></string>
+    <string name="settings_motion_blur_intensity"><![CDATA[动态模糊程度]]></string>
+    <string name="settings_motion_blur_intensity_summary"><![CDATA[滑动时的最大模糊半径：%1$d%%]]></string>
+    <string name="settings_motion_blur_strength"><![CDATA[动态模糊强度]]></string>
+    <string name="settings_motion_blur_strength_summary"><![CDATA[模糊随滑动速度增长的快慢：%1$d%%]]></string>
+
+    <!-- Comput Agent -->
+
+    <!-- Stealth version -->
+    <string name="about_version_title">应用与服务版本</string>
+    <string name="about_version_description">“关于”显示已安装的应用版本，“状态”显示正在运行的服务版本。更新应用后，请重新启动服务以使用新版本。</string>
+</resources>

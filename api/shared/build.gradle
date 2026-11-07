@@ -1,0 +1,69 @@
+plugins {
+    id('com.android.library')
+}
+
+def versionPropertiesFile = rootProject.file('version.properties')
+if (!versionPropertiesFile.isFile()) {
+    versionPropertiesFile = rootProject.file('../version.properties')
+}
+
+def shizukuVersionSource = file("${layout.buildDirectory.get().asFile}/generated/source/shizukuVersion/main")
+
+tasks.register('generateShizukuVersion') {
+    inputs.file(versionPropertiesFile)
+    outputs.dir(shizukuVersionSource)
+    doLast {
+        def releaseVersion = new Properties()
+        versionPropertiesFile.withInputStream { releaseVersion.load(it) }
+        def releaseName = releaseVersion.getProperty('versionName', '')
+        def matcher = (releaseName =~ /^(\d+)\.(\d+)\.(\d+)$/)
+        if (!matcher.matches()) {
+            throw new GradleException("versionName must be major.minor.patch, got: ${releaseName}")
+        }
+        def packageDir = new File(shizukuVersionSource, 'rikka/shizuku')
+        packageDir.mkdirs()
+        new File(packageDir, 'ShizukuVersions.java').setText("""package rikka.shizuku;
+
+/** Generated from version.properties. Do not edit. */
+final class ShizukuVersions {
+    static final int SERVER_VERSION = ${matcher.group(1)};
+    static final int SERVER_PATCH_VERSION = ${matcher.group(2)};
+
+    private ShizukuVersions() {}
+}
+""", 'UTF-8')
+    }
+}
+
+android {
+    namespace 'rikka.shizuku.shared'
+    sourceSets.main.java.srcDir(shizukuVersionSource)
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+tasks.named('preBuild').configure {
+    dependsOn('generateShizukuVersion')
+}
+tasks.withType(JavaCompile).configureEach {
+    dependsOn('generateShizukuVersion')
+}
+
+dependencies {
+    implementation project(':aidl')
+
+    implementation 'androidx.annotation:annotation:1.11.0-alpha01'
+}
+
+ext {
+    publishLibrary = true
+    POM_NAME = "Shizuku API - shared"
+    POM_DESCRIPTION = "Shared parts for the API of Shizuku and Sui."
+}
